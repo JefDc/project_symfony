@@ -3,6 +3,8 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class PropertySearch
 {
@@ -10,6 +12,13 @@ class PropertySearch
      * @var int|null
      */
     private $maxPrice;
+
+    /**
+     * @var int|null
+     * @Assert\Range(min=10, max=400)
+     */
+    private $minSurface;
+
 
     /**
      * @return int|null
@@ -46,9 +55,4 @@ class PropertySearch
         $this->minSurface = $minSurface;
         return $this;
     }
-    /**
-     * @var int|null
-     */
-    private $minSurface;
-
 }
