@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -113,6 +115,7 @@ class Property
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated_at;
+
 
     public function __construct()
     {
@@ -347,6 +350,4 @@ class Property
 
         return $this;
     }
-
-
 }
