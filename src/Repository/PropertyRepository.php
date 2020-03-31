@@ -30,16 +30,30 @@ class PropertyRepository extends ServiceEntityRepository
     {
         $query =  $this->findVisibleQuery();
 
+        // Request for price
         if ($search->getMaxPrice()) {
             $query = $query
                 ->andwhere('p.price <= :maxPrice')
                 ->setParameter('maxPrice', $search->getMaxPrice());
         }
 
+        // Request for surface
         if ($search->getMinSurface()) {
             $query = $query
                 ->andwhere('p.surface >= :minSurface')
                 ->setParameter('minSurface', $search->getMinSurface());
+        }
+
+        // Request for spec
+        if ($search->getSpecs()->count() > 0) {
+            // Avoid key injection
+            $key = 0;
+            foreach ($search->getSpecs() as $spec) {
+                $key++;
+                $query = $query
+                    ->andWhere(":spec$key MEMBER OF p.specs")
+                    ->setParameter("spec$key", $spec);
+            }
         }
 
         return $query->getQuery();

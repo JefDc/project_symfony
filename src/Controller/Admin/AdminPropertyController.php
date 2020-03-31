@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 
 
 use App\Entity\Property;
+use App\Entity\Spec;
 use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -55,6 +56,8 @@ class AdminPropertyController extends AbstractController
     public function new(Request $request): Response
     {
         $property = new Property();
+        $spec = new Spec();
+
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
@@ -81,6 +84,7 @@ class AdminPropertyController extends AbstractController
      */
     public function edit(Property $property, Request $request): Response
     {
+
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 

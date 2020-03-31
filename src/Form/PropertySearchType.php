@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\PropertySearch;
+use App\Entity\Spec;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,6 +29,13 @@ class PropertySearchType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Surface minimale'
                 ]
+            ])
+            ->add('specs', EntityType::class, [
+                'required' => false,
+                'label' => false,
+                'class' => Spec::class,
+                'choice_label' => 'name',
+                'multiple' => true,
             ])
         ;
     }

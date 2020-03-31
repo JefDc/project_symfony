@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title 'Creation d\'une spécification' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1>Creation d'une spécification</h1>
+        {{ include ('admin/spec/_form.html.twig', {button: 'Créer'}) }}
+    </div>
+
+{% endblock %}
+
+
+

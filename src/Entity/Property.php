@@ -116,10 +116,16 @@ class Property
      */
     private $updated_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Spec", inversedBy="properties")
+     */
+    private $specs;
+
 
     public function __construct()
     {
         $this->created_at = new \DateTime();
+        $this->specs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -347,6 +353,34 @@ class Property
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Spec[]
+     */
+    public function getSpecs(): Collection
+    {
+        return $this->specs;
+    }
+
+    public function addSpec(Spec $spec): self
+    {
+        if (!$this->specs->contains($spec)) {
+            $this->specs[] = $spec;
+            $spec->addProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpec(Spec $spec): self
+    {
+        if ($this->specs->contains($spec)) {
+            $this->specs->removeElement($spec);
+            $spec->removeProperty($this);
+        }
 
         return $this;
     }
