@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block slidebar %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+                <div class="sidebar-sticky mt-5">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Propriétés</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ path('admin.property.index') }}">
+                                Voir tout
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ path('admin.property.new') }}">
+                                Créer une propriété
+                            </a>
+                        </li>
+                    </ul>
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Paramètres</span>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="{{ path('admin.spec_index') }}">
+                                Spécification
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="col-md-10">
+                {% block admin %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -24,6 +24,7 @@ class AdminSpecController extends AbstractController
     {
         return $this->render('admin/spec/index.html.twig', [
             'specs' => $specRepository->findAll(),
+            'admin' => true
         ]);
     }
 
@@ -49,6 +50,7 @@ class AdminSpecController extends AbstractController
         return $this->render('admin/spec/new.html.twig', [
             'spec' => $spec,
             'form' => $form->createView(),
+            'admin' => true
         ]);
     }
 
@@ -73,6 +75,7 @@ class AdminSpecController extends AbstractController
         return $this->render('admin/spec/edit.html.twig', [
             'spec' => $spec,
             'form' => $form->createView(),
+            'admin' => true
         ]);
     }
 

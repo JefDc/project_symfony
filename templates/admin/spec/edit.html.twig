@@ -1,7 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/slidebar.html.twig' %}
 {% block title %} Éditer {{ spec.name }} {% endblock %}
 
-{% block body %}
+{% block admin %}
     <div class="container mt-4">
         <h1>Éditer la spécification</h1>
         {{ include ('admin/spec/_form.html.twig', {button: 'Mettre a jour'}) }}
